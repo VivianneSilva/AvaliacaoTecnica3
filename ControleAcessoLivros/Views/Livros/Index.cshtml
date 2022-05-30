@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ControleAcessoLivros.Models.Livro>
+
+@{
+    ViewData["Title"] = "Livraria da Vivi";
+}
+
+<h1>Livros</h1>
+
+<p>
+    <a asp-action="Create">Adicionar Novo Livro</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeLivro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Autor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AnoLancamento)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeLivro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autor.NomeAutor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnoLancamento)
+            </td>
+            <td>
+                <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.LivroId">Editar</a> |
+                <a asp-action="Details" class="btn btn-light" asp-route-id="@item.LivroId">Detalhes</a> |
+                <a asp-action="Delete"  class="btn btn-danger" asp-route-id="@item.LivroId">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
